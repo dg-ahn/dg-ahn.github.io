@@ -34,10 +34,10 @@ Complete a static responsive portfolio and snake game, verify it locally, then p
 - Step 9 follow-up execution mode: `CODEX_WORKER + CLAUDE_VERIFIER` requested; actual model `claude-sonnet-5`; current/last normal commit `27afc8d`; URL https://dg-ahn.github.io/; Git status `M AORR.md`, `M CHANGE_REQUEST.md`, `?? modify.txt`.
 - Step 9 follow-up rollback basis: preserve current worktree and `modify.txt`; restore only touched files to `27afc8d` if rejected, without hard reset, force push, or record rewriting.
 
-- Status: `DEPLOY_APPROVAL_REQUIRED` (asset cache-busting follow-up prepared after Pages served stale JavaScript).
+- Status: `HITL_REQUIRED` (commits `c48cf99` and `88f6f60` pushed, but Pages still serves stale HTML/JavaScript).
 - Latest code commit: `6f51af0`; expected URL https://dg-ahn.github.io/; repository main matches the commit.
 - Current change: Tetris cells now use numeric piece classes and empty text content; local syntax/static assertions passed. Live Pages remains stale until a new approved deployment.
-- Latest deployment attempt: `c48cf99` pushed; HTML updated but cached `script.js` did not expose the numeric mapping. `index.html` now pins `script.js?v=c48cf99` for the next approved push.
+- Latest deployment attempts: `c48cf99` and `88f6f60` pushed; repeated cache-busting checks return HTTP 200 but omit the pinned script and numeric mapping. Live propagation remains unresolved.
 - Step 9 follow-up 2 result: current commit `428c2cf`; last normal deployment commit `428c2cf`; modified files are `index.html`, `script.js`, `AORR.md`, `AORR_LOG.md`, `CHANGE_REQUEST.md`, `MEMORY.md`; `modify.txt` remains excluded.
 - Latest deployment commit: `14c79d0`; GitHub Pages URL https://dg-ahn.github.io/ returned HTTP 200 with Tetris, Samsung Galaxy Smartphone, and Snake markers.
 - Step 9 deployment commit: `8a1a663`; GitHub Pages URL: https://dg-ahn.github.io/; Codex fallback HTTP/content regression passed.
