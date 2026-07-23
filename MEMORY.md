@@ -1,0 +1,42 @@
+# Project Settings
+
+- GitHub Pages URL: https://dg-ahn.github.io
+- GitHub repository: https://github.com/dg-ahn/dg-ahn.github.io.git
+- GitHub token file: `github_token.txt` (never print or commit)
+- Profile reference: `cv.txt`
+- Design direction: Editorial Minimalism
+- Game addition: randomly moving enemy
+
+# Goal
+
+Complete a static responsive portfolio and snake game, verify it locally, then prepare GitHub Pages deployment.
+
+# Scope
+
+- Static HTML, CSS, JavaScript only; responsive UI; Home/About/Contact; Projects/Experience/Research where verifiable; Games menu; snake game; GitHub Pages compatibility.
+- No backend, external services, unverified personal information, commit, push, or deployment without explicit approval.
+
+# Execution
+
+- Mode: `CODEX_WORKER + CLAUDE_VERIFIER`; use `CODEX_FALLBACK` only when Claude cannot verify.
+- Claude CLI: `2.1.218`; actual model probe: `claude-sonnet-5`.
+- Current verifier mode: `CODEX_FALLBACK`; Claude repository prompts returned no result body (`CLAUDE_REPOSITORY_VERIFIER_NO_OUTPUT`).
+
+# Current State
+
+- Status: `DEPLOY_APPROVAL_REQUIRED`.
+- Fallback checks: Node syntax, static assertions, local HTTP, relative paths PASS.
+- Browser visual/console viewport inspection is `[Human verification needed]` because browser runtime hit sandbox `EPERM`.
+- No commit, push, or deployment performed.
+
+# Acceptance
+
+- Preserve verified content; mark uncertain content `[Human verification needed]`.
+- Verify HTML structure, internal links, responsive layout at 375px/768px/1440px, JavaScript syntax/console, game controls and state transitions, local HTTP, relative paths, and GitHub Pages compatibility.
+- Game must support start, movement, food, growth, score, collision, game over, pause, restart, high score, arrow keys, WASD, mobile buttons, reverse-direction prevention, one timer, and randomly moving enemy.
+
+# Guardrails
+
+- Never expose secrets; never delete or weaken tests; one cause and minimal files per retry; maximum 6 retries per fingerprint.
+- Detailed execution records belong in `AORR_LOG.md`.
+- After all local checks pass, stop at `DEPLOY_APPROVAL_REQUIRED` and wait for explicit approval before commit, push, or deployment.

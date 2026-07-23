@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(ls*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(node -c *)",
+      "Bash(node --check *)",
+      "Bash(python -m http.server*)",
+      "Bash(python3 -m http.server*)",
+      "Bash(curl -s http://localhost*)",
+      "Bash(curl -s http://127.0.0.1*)",
+      "PowerShell(Get-ChildItem*)",
+      "PowerShell(git status*)",
+      "PowerShell(git diff*)",
+      "PowerShell(git log*)",
+      "PowerShell(node -c *)",
+      "PowerShell(node --check *)",
+      "PowerShell(python -m http.server*)",
+      "PowerShell(Invoke-WebRequest http://localhost*)",
+      "PowerShell(Invoke-WebRequest http://127.0.0.1*)"
+    ],
+    "deny": [
+      "Bash(git push*)",
+      "Bash(git commit*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean*)",
+      "Bash(rm -rf*)",
+      "Bash(cat github_token.txt)",
+      "Bash(cat claude-code-cli/env_settings.txt)",
+      "PowerShell(git push*)",
+      "PowerShell(git commit*)",
+      "PowerShell(git reset --hard*)",
+      "PowerShell(Remove-Item*)",
+      "PowerShell(Get-Content github_token.txt)",
+      "PowerShell(Get-Content claude-code-cli/env_settings.txt)"
+    ]
+  }
+}
