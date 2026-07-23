@@ -10,6 +10,14 @@
 - Responsive note: mobile rules below `40rem` and fluid layout via `min()`, `clamp()`, and `aspect-ratio`; browser runtime failed with sandbox `EPERM`, so visual console/viewport inspection is `[Human verification needed]`.
 - Final status: `DEPLOY_APPROVAL_REQUIRED`. No commit, push, or deployment performed.
 
+## Step 7 — approved deployment
+
+- Secret tracking check: `github_token.txt`, `env_settings.txt`, and `cv.txt` are ignored and not tracked; their values were not read or printed.
+- Commit: `cddb366` (`Complete responsive portfolio and snake game`); pushed to `origin/main`.
+- Deployment URL: `https://dg-ahn.github.io/` returned HTTP `200` after Pages propagation. Deployed HTML contained `About`, `Games`, and `game-board`; deployed CSS/JS assets returned `200`.
+- Claude deployment regression: `claude-sonnet-5` invocation again returned no result body (`CLAUDE_REPOSITORY_VERIFIER_NO_OUTPUT`). Codex fallback repeated the same HTTP/content-marker regression checks and passed.
+- Final status: `DEPLOYED`.
+
 ## Step 5 — L1 정보 구조·HTML 최소 골격
 
 - 실행 주체·모델: Claude Code CLI `claude-sonnet-5`를 Verifier로 시도; Bash 권한 요청 후 결과 미반환으로 `CODEX_FALLBACK` 전환.
