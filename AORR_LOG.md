@@ -43,3 +43,8 @@
 - Provisional status: `HITL_REQUIRED` (not `DEPLOY_APPROVAL_REQUIRED` because unresolved approved Change Items remain).
 - Fallback verification result: initial PowerShell assertion hit `FALLBACK_TEST_ENCODING_MISMATCH` for Korean text; UTF-8 Python assertion rerun passed. `FALLBACK_STATIC_PASS`; local HTTP root/CSS/JS all `200`; Node syntax passed.
 - No Claude test was duplicated after fallback. No commit, push, or deployment performed.
+- Approved deployment: secret tracking rechecked; `github_token.txt`, `env_settings.txt`, and `cv.txt` remained ignored and untracked; `modify.txt` remained excluded.
+- Commit/push: `8a1a663` (`Apply approved portfolio change requests`) pushed to `origin/main`.
+- Pages regression: after propagation and cache-busting, site HTTP `200`; HTML had no `Human verification needed`, had `[사람 확인 필요]` and `purple obstacle`; JS/CSS assets HTTP `200`; JS had `Escape`; CSS had `touch-action`.
+- Claude deployment regression: `dontAsk` explicitly reported network fetch tools denied; bypass-permissions retry returned no result. Fingerprint: `CLAUDE_DEPLOYMENT_FETCH_PERMISSION_DENIED`. Codex fallback passed the same checks.
+- Final status: `HITL_REQUIRED` because unresolved Change Items and Claude deployment regression remain, although the approved partial change is live at the Pages URL.

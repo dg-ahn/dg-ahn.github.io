@@ -28,7 +28,8 @@ Complete a static responsive portfolio and snake game, verify it locally, then p
 
 # Current State
 
-- Status: `HITL_REQUIRED`.
+- Status: `HITL_REQUIRED` (deployment live; Claude deployment regression could not fetch under permission mode).
+- Step 9 deployment commit: `8a1a663`; GitHub Pages URL: https://dg-ahn.github.io/; Codex fallback HTTP/content regression passed.
 - Fallback checks: Node syntax, static assertions, local HTTP, relative paths PASS.
 - Browser visual/console viewport inspection is `[Human verification needed]` because browser runtime hit sandbox `EPERM`.
 - Deployment: commit `cddb366` pushed to `main`; GitHub Pages returned HTTP 200 with expected markers.
