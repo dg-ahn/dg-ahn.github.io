@@ -64,3 +64,8 @@
 - CR-24: `HITL_REQUIRED`; no image asset or personal likeness was created without source/license/alt/design policy.
 - Fallback verification: Node syntax passed; Tetris static assertions passed; local root/CSS/JS HTTP statuses were all `200`. Test-runner quoting failures were recorded as `FALLBACK_TEST_RUNNER_QUOTING` and resolved by using equivalent PowerShell assertions; no test scope was weakened.
 - Step 9 follow-up status: `HITL_REQUIRED`; no commit, push, or deployment. Rollback basis remains `27afc8d`.
+- Approved deployment after Tetris rules: secret tracking rechecked; ignored secret/profile files stayed untracked and `modify.txt` stayed excluded.
+- Commit/push: `14c79d0` (`Add Tetris and project label`) pushed to `origin/main`.
+- Pages regression: after propagation, URL `https://dg-ahn.github.io/?v=14c79d0` returned HTTP `200`; HTML contained Tetris, `Samsung Galaxy Smartphone`, and Snake markers; deployed JS/CSS returned `200` and contained Tetris high-score/visibility logic and styles.
+- Claude deployment regression: `dontAsk` reported all network/shell fetch tools denied. Fingerprint: `CLAUDE_DEPLOYMENT_FETCH_PERMISSION_DENIED`. Codex fallback passed equivalent deployed checks.
+- Final status: `HITL_REQUIRED` because CR-24 image policy and Claude live regression remain unresolved; Tetris/project-label deployment is live.
