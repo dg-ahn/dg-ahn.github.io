@@ -1,0 +1,65 @@
+:root {
+  color-scheme: light;
+  --ink: #10233f;
+  --muted: #52657f;
+  --line: #d8e1ec;
+  --paper: #f7faff;
+  --accent: #1f5f9f;
+  --max-width: 72rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); }
+
+.site-header,
+main,
+.site-footer {
+  width: min(100% - 2rem, var(--max-width));
+  margin-inline: auto;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-title { color: var(--ink); font-weight: 700; text-decoration: none; }
+.site-nav { display: flex; gap: 1.25rem; }
+.site-nav a { text-decoration: none; }
+.menu-toggle { display: none; }
+
+.hero { padding: clamp(5rem, 14vw, 11rem) 0 clamp(4rem, 10vw, 8rem); }
+.content-section { max-width: 46rem; padding: 4rem 0; border-top: 1px solid var(--line); }
+.games-section { padding-bottom: 7rem; }
+.eyebrow { margin: 0 0 0.75rem; color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+h1, h2 { margin: 0 0 1rem; line-height: 1.1; }
+h1 { max-width: 12ch; font-size: clamp(3rem, 9vw, 7rem); letter-spacing: -0.06em; }
+h2 { font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.04em; }
+.intro { max-width: 34rem; color: var(--muted); font-size: clamp(1.1rem, 2vw, 1.35rem); }
+.site-footer { padding: 1.5rem 0 3rem; color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width:  fortyrem) {
+  .site-header { position: relative; }
+  .menu-toggle { display: inline-block; border: 1px solid var(--line); background: transparent; color: var(--ink); padding: 0.5rem 0.75rem; }
+  .site-nav { display: none; position: absolute; inset: 4.5rem 0 auto; flex-direction: column; gap: 0; padding: 0.75rem; background: var(--paper); border: 1px solid var(--line); }
+  .site-nav.is-open { display: flex; }
+  .site-nav a { padding: 0.65rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
