@@ -32,3 +32,14 @@
 - fingerprint: `CSS_MEDIA_QUERY_INVALID_FORTYREM; JS_VERIFICATION_NODE_UNAVAILABLE`.
 - 최종 상태: `RETRY_NEEDED`.
 - Retry 제한: 두 번째 Codex 코드 수정·push·배포는 수행하지 않음.
+## Step 9 — Change Request re-loop
+
+- Start context: mode `CODEX_WORKER + CLAUDE_VERIFIER`; actual model `claude-sonnet-5`; start/last normal commit `b5065e1`; URL `https://dg-ahn.github.io/`; worktree had `M AORR.md`, untracked `CHANGE_REQUEST.md`, and out-of-scope `modify.txt`.
+- Claude pre-test: model probe returned `CLAUDE_SONNET_5_READY`, but repository pre-test for CR-01/CR-10/CR-11/CR-12 returned no result body. Fingerprint: `CLAUDE_REPOSITORY_VERIFIER_NO_OUTPUT`. No repeated identical Claude request; fallback used.
+- Act: CR-01 changed only the visitor-facing Projects placeholder to `[사람 확인 필요]`; CR-12 added confirmed enemy rules to the game instructions; CR-13 added Escape/outside-click/link-close behavior; CR-14 added touch-action support. No unverified career, project, research, contact, language, speed policy, IA, favicon, or footer decisions were invented.
+- HITL: CR-02~CR-11 (except CR-01/CR-12), CR-15~CR-21 remain `HITL_REQUIRED` where evidence or policy is missing. In particular, CR-10/CR-11 speed behavior was not changed because expected speed mapping is unspecified.
+- Fallback post-change verification: bundled Node syntax, static content/behavior assertions, and local HTTP/relative asset checks are required once; Claude tests were not duplicated because verifier output was unavailable.
+- No commit, push, or deployment performed. Rollback basis remains `b5065e1`; preserve `modify.txt` and pre-existing worktree changes.
+- Provisional status: `HITL_REQUIRED` (not `DEPLOY_APPROVAL_REQUIRED` because unresolved approved Change Items remain).
+- Fallback verification result: initial PowerShell assertion hit `FALLBACK_TEST_ENCODING_MISMATCH` for Korean text; UTF-8 Python assertion rerun passed. `FALLBACK_STATIC_PASS`; local HTTP root/CSS/JS all `200`; Node syntax passed.
+- No Claude test was duplicated after fallback. No commit, push, or deployment performed.

@@ -2,8 +2,11 @@
   const toggle = document.querySelector('.menu-toggle');
   const navigation = document.querySelector('#site-nav');
   if (toggle && navigation) {
+    const closeNavigation = () => { navigation.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
     toggle.addEventListener('click', () => { const open = navigation.classList.toggle('is-open'); toggle.setAttribute('aria-expanded', String(open)); });
-    navigation.addEventListener('click', event => { if (event.target.matches('a')) { navigation.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); } });
+    navigation.addEventListener('click', event => { if (event.target.matches('a')) closeNavigation(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeNavigation(); });
+    document.addEventListener('click', event => { if (navigation.classList.contains('is-open') && !navigation.contains(event.target) && event.target !== toggle) closeNavigation(); });
   }
 
   const board = document.querySelector('#game-board');

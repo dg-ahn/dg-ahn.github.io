@@ -21,10 +21,14 @@ Complete a static responsive portfolio and snake game, verify it locally, then p
 - Mode: `CODEX_WORKER + CLAUDE_VERIFIER`; use `CODEX_FALLBACK` only when Claude cannot verify.
 - Claude CLI: `2.1.218`; actual model probe: `claude-sonnet-5`.
 - Current verifier mode: `CODEX_FALLBACK`; Claude repository prompts returned no result body (`CLAUDE_REPOSITORY_VERIFIER_NO_OUTPUT`).
+- Step 9 execution mode: `CODEX_WORKER + CLAUDE_VERIFIER` requested; fallback only if Claude cannot return tests. Actual model: `claude-sonnet-5`.
+- Step 9 start commit: `b5065e1`; last normal deployment commit: `b5065e1`; URL: https://dg-ahn.github.io/.
+- Step 9 start Git status: `M AORR.md`, `?? CHANGE_REQUEST.md`, `?? modify.txt` (`modify.txt` is out of scope and must be preserved).
+- Rollback 기준: before any Step 9 code change, preserve current worktree; if an approved change must be reverted, restore only its touched files to commit `b5065e1` without force push, hard reset, or rewriting records.
 
 # Current State
 
-- Status: `DEPLOYED`.
+- Status: `HITL_REQUIRED`.
 - Fallback checks: Node syntax, static assertions, local HTTP, relative paths PASS.
 - Browser visual/console viewport inspection is `[Human verification needed]` because browser runtime hit sandbox `EPERM`.
 - Deployment: commit `cddb366` pushed to `main`; GitHub Pages returned HTTP 200 with expected markers.
