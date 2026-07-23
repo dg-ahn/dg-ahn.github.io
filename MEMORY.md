@@ -34,11 +34,11 @@ Complete a static responsive portfolio and snake game, verify it locally, then p
 - Step 9 follow-up execution mode: `CODEX_WORKER + CLAUDE_VERIFIER` requested; actual model `claude-sonnet-5`; current/last normal commit `27afc8d`; URL https://dg-ahn.github.io/; Git status `M AORR.md`, `M CHANGE_REQUEST.md`, `?? modify.txt`.
 - Step 9 follow-up rollback basis: preserve current worktree and `modify.txt`; restore only touched files to `27afc8d` if rejected, without hard reset, force push, or record rewriting.
 
-- Status: `DEPLOY_APPROVAL_REQUIRED` (Games label presentation change is locally verified and awaiting approved push).
+- Status: `HITL_REQUIRED` (commit `9603239` pushed, but Pages cache-busting check still serves the previous Games labels).
 - Latest code commit: `6f51af0`; expected URL https://dg-ahn.github.io/; repository main matches the commit.
 - Current change: Tetris cells now use numeric piece classes and empty text content; local syntax/static assertions passed. Live Pages remains stale until a new approved deployment.
 - Latest deployment attempts: `c48cf99`, `88f6f60`, and `f7daec0` pushed; final Pages check returned HTTP 200 with `script.js?v=c48cf99`, empty cell text, and numeric piece mapping.
-- Pending approved change: Tetris eyebrow is `GAMES`; Snake eyebrow is removed.
+- Latest change commit: `9603239`; Pages returned HTTP 200 but still had Tetris `Tetris` eyebrow and Snake `Games` eyebrow. Live propagation unresolved.
 - Step 9 follow-up 2 result: current commit `428c2cf`; last normal deployment commit `428c2cf`; modified files are `index.html`, `script.js`, `AORR.md`, `AORR_LOG.md`, `CHANGE_REQUEST.md`, `MEMORY.md`; `modify.txt` remains excluded.
 - Latest deployment commit: `14c79d0`; GitHub Pages URL https://dg-ahn.github.io/ returned HTTP 200 with Tetris, Samsung Galaxy Smartphone, and Snake markers.
 - Step 9 deployment commit: `8a1a663`; GitHub Pages URL: https://dg-ahn.github.io/; Codex fallback HTTP/content regression passed.
