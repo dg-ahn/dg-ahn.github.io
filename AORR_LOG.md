@@ -76,3 +76,8 @@
 - CR-28: removed only the Projects `[사람 확인 필요]` placeholder and preserved `Samsung Galaxy Smartphone`; no unverified project fields were added.
 - Fallback verification: Node syntax passed; static assertions passed; local root/CSS/JS HTTP statuses were all `200`. Test-runner invocation errors were not implementation failures and did not weaken assertions.
 - Step 9 follow-up 2 status: `DEPLOY_APPROVAL_REQUIRED`; no commit, push, or deployment. Rollback basis remains `428c2cf`; preserve `modify.txt`.
+- Approved deployment attempt: secret tracking rechecked; ignored secret/profile files remained untracked and `modify.txt` remained excluded.
+- Commit/push: `6f51af0` (`Refine Tetris and Snake presentation`) pushed to `origin/main`; repository remote main matches the commit.
+- Pages status: repeated cache-busting and direct `index.html` requests returned HTTP `200` but stale HTML still contained `Snake / 지렁이` and `[사람 확인 필요]`, and did not contain the new `Snake` heading/project text. Fingerprint: `GITHUB_PAGES_STALE_HTML_AFTER_PUSH`.
+- Claude deployment regression: network/shell fetch tools were denied and Bash also hit `.claude/session-env` EPERM. Fingerprint: `CLAUDE_DEPLOYMENT_FETCH_PERMISSION_DENIED`.
+- Final status: `HITL_REQUIRED`; code is pushed but live Pages content is not verified as updated. No force push or reset performed.
