@@ -20,11 +20,20 @@
     <main id="home">
       <section class="hero" aria-labelledby="hero-title"><p class="eyebrow">Portfolio</p><h1 id="hero-title">Building useful systems with care.</h1><p class="intro">Software engineer focused on clear interfaces, dependable automation, and thoughtful product experiences.</p></section>
       <section id="about" class="content-section" aria-labelledby="about-title"><p class="eyebrow">About</p><h2 id="about-title">Ahn Dong-Gyu</h2><p>Software engineer in Samsung Electronics MX Business. Working on smartphone-related software projects since 2010.</p></section>
-      <section id="projects" class="content-section" aria-labelledby="projects-title"><p class="eyebrow">Projects</p><h2 id="projects-title">Selected work</h2><p>Project details: <span class="human-check">[사람 확인 필요]</span></p></section>
+      <section id="projects" class="content-section" aria-labelledby="projects-title"><p class="eyebrow">Projects</p><h2 id="projects-title">Selected work</h2><p>Project details: Samsung Galaxy Smartphone. <span class="human-check">[사람 확인 필요]</span></p></section>
       <section id="experience" class="content-section" aria-labelledby="experience-title"><p class="eyebrow">Experience</p><h2 id="experience-title">Engineering practice</h2><p>Product development, system design, and cross-functional delivery across long-lived software projects.</p></section>
       <section id="research" class="content-section" aria-labelledby="research-title"><p class="eyebrow">Research</p><h2 id="research-title">Questions worth testing</h2><p>Exploring reliable interaction patterns and small, measurable improvements to everyday tools.</p></section>
       <section id="contact" class="content-section" aria-labelledby="contact-title"><p class="eyebrow">Contact</p><h2 id="contact-title">Say hello</h2><p>For professional enquiries, email <a href="mailto:b2basic.ahn@gmail.com">b2basic.ahn@gmail.com</a>.</p></section>
       <section id="games" class="content-section games-section" aria-labelledby="games-title">
+        <section class="tetris-section" aria-labelledby="tetris-title">
+          <p class="eyebrow">Tetris</p><h3 id="tetris-title">Tetris</h3>
+          <p id="tetris-help" class="game-rules">10×20 board. Move with ← →, soft drop with ↓, rotate with ↑ or Z, hard drop with Space. P or Escape pauses; R restarts.</p>
+          <div class="tetris-shell">
+            <div class="tetris-toolbar" aria-live="polite"><span>Score <strong id="tetris-score">0</strong></span><span>Lines <strong id="tetris-lines">0</strong></span><span>Level <strong id="tetris-level">1</strong></span><span>Best <strong id="tetris-high-score">0</strong></span></div>
+            <div class="tetris-layout"><div id="tetris-board" class="tetris-board" role="application" aria-label="Tetris board" aria-describedby="tetris-help" tabindex="0"></div><aside class="tetris-side"><h4>Next</h4><div id="tetris-next" class="tetris-next" aria-label="Next piece"></div><button id="tetris-pause" type="button">Pause</button><button id="tetris-restart" type="button">Restart</button><button id="tetris-contrast" type="button" aria-pressed="false">High contrast</button><button id="tetris-sound" type="button" aria-pressed="false">Sound off</button></aside></div>
+            <p id="tetris-status" class="game-status" role="status" aria-live="polite">Press Start to play.</p><button id="tetris-start" class="primary-button" type="button">Start Tetris</button>
+          </div>
+        </section>
         <p id="game-help" class="game-rules">Use arrow keys or WASD to move. Space pauses; Enter or R restarts. A purple obstacle moves randomly; colliding with it ends the game and does not change your score.</p>
         <p class="eyebrow">Games</p><h2 id="games-title">Snake / 지렁이</h2><p>Use arrow keys or WASD. Space pauses. Enter or R restarts.</p>
         <div class="game-shell">

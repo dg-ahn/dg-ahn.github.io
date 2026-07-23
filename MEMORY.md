@@ -28,7 +28,10 @@ Complete a static responsive portfolio and snake game, verify it locally, then p
 
 # Current State
 
-- Status: `HITL_REQUIRED` (deployment live; Claude deployment regression could not fetch under permission mode).
+- Step 9 follow-up execution mode: `CODEX_WORKER + CLAUDE_VERIFIER` requested; actual model `claude-sonnet-5`; current/last normal commit `27afc8d`; URL https://dg-ahn.github.io/; Git status `M AORR.md`, `M CHANGE_REQUEST.md`, `?? modify.txt`.
+- Step 9 follow-up rollback basis: preserve current worktree and `modify.txt`; restore only touched files to `27afc8d` if rejected, without hard reset, force push, or record rewriting.
+
+- Status: `HITL_REQUIRED` (CR-22/CR-23 implemented and fallback-verified; CR-24 image policy remains unresolved; deployment remains live).
 - Step 9 deployment commit: `8a1a663`; GitHub Pages URL: https://dg-ahn.github.io/; Codex fallback HTTP/content regression passed.
 - Fallback checks: Node syntax, static assertions, local HTTP, relative paths PASS.
 - Browser visual/console viewport inspection is `[Human verification needed]` because browser runtime hit sandbox `EPERM`.

@@ -48,3 +48,19 @@
 - Pages regression: after propagation and cache-busting, site HTTP `200`; HTML had no `Human verification needed`, had `[사람 확인 필요]` and `purple obstacle`; JS/CSS assets HTTP `200`; JS had `Escape`; CSS had `touch-action`.
 - Claude deployment regression: `dontAsk` explicitly reported network fetch tools denied; bypass-permissions retry returned no result. Fingerprint: `CLAUDE_DEPLOYMENT_FETCH_PERMISSION_DENIED`. Codex fallback passed the same checks.
 - Final status: `HITL_REQUIRED` because unresolved Change Items and Claude deployment regression remain, although the approved partial change is live at the Pages URL.
+- Step 9 follow-up start: mode `CODEX_WORKER + CLAUDE_VERIFIER`; model `claude-sonnet-5`; current/last normal commit `27afc8d`; URL `https://dg-ahn.github.io/`; worktree `M AORR.md`, `M CHANGE_REQUEST.md`, untracked `modify.txt`.
+- CR-22 Claude pre-test returned no result body. Fingerprint: `CLAUDE_REPOSITORY_VERIFIER_NO_OUTPUT`. Current documents/code also lack Tetris rules, controls, scoring, pause/game-over, high-score, mobile, and accessibility policy.
+- CR-22 stopped as `HITL_REQUIRED`; CR-23 and CR-24 were not implemented because the documented dependency order is `CR-22 → CR-23 → CR-24`. No code, test, commit, push, or deployment was performed.
+- Rollback basis: no code changes; preserve the existing worktree and `modify.txt`; last normal commit remains `27afc8d`.
+- Step 9 follow-up resumed after user supplied Tetris rules. Claude pre-test again returned no result body (`CLAUDE_REPOSITORY_VERIFIER_NO_OUTPUT`), so Codex fallback handled implementation and verification.
+- CR-22 Act: added a separate Tetris section above Snake with 10×20 board, seven tetromino types, line scoring 100/300/500/800, level-based drop speed, next piece, ghost landing preview, Arrow/WASD-relevant keyboard controls (←/→/↓/↑/Z/Space/P/Escape/R), pause countdown, visibility auto-pause, restart, local high score, high-contrast toggle, sound-off toggle, and no rapid flashing/shaking effects.
+- CR-23 Act: added only the user-provided `Samsung Galaxy Smartphone` project label; no unverified role, period, technology, outcome, or link was added.
+- CR-24: `HITL_REQUIRED`; no image asset or personal likeness was created without source/license/alt/design policy.
+- Fallback verification: Node syntax passed; Tetris static assertions passed; local root/CSS/JS HTTP statuses were all `200`. Test-runner quoting failures were recorded as `FALLBACK_TEST_RUNNER_QUOTING` and resolved by using equivalent PowerShell assertions; no test scope was weakened.
+- Step 9 follow-up status: `HITL_REQUIRED`; no commit, push, or deployment. Rollback basis remains `27afc8d`.
+- Step 9 follow-up resumed after user supplied Tetris rules. Claude pre-test again returned no result body (`CLAUDE_REPOSITORY_VERIFIER_NO_OUTPUT`), so Codex fallback handled implementation and verification.
+- CR-22 Act: added a separate Tetris section above Snake with 10×20 board, seven tetromino types, line scoring 100/300/500/800, level-based drop speed, next piece, ghost landing preview, Arrow/WASD-relevant keyboard controls (←/→/↓/↑/Z/Space/P/Escape/R), pause countdown, visibility auto-pause, restart, local high score, high-contrast toggle, sound-off toggle, and no rapid flashing/shaking effects.
+- CR-23 Act: added only the user-provided `Samsung Galaxy Smartphone` project label; no unverified role, period, technology, outcome, or link was added.
+- CR-24: `HITL_REQUIRED`; no image asset or personal likeness was created without source/license/alt/design policy.
+- Fallback verification: Node syntax passed; Tetris static assertions passed; local root/CSS/JS HTTP statuses were all `200`. Test-runner quoting failures were recorded as `FALLBACK_TEST_RUNNER_QUOTING` and resolved by using equivalent PowerShell assertions; no test scope was weakened.
+- Step 9 follow-up status: `HITL_REQUIRED`; no commit, push, or deployment. Rollback basis remains `27afc8d`.

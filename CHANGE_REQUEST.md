@@ -66,6 +66,84 @@
 >
 > 이번 단계에서는 구현·테스트·commit·push·배포를 금지한다.
 
+---
+
+# Step 8 follow-up — 추가 사용자 수정 요청 분석
+
+## 확인 범위와 제한
+
+- 기준: `MEMORY.md` Project Settings, 마지막 정상 배포 commit `27afc8d`, `https://dg-ahn.github.io/`, 현재 `index.html`, `styles.css`, `script.js`, 기존 Change Item 문서.
+- 이번 단계는 분석·문서화만 수행한다. 코드 수정, 테스트 실행, commit, push, 배포는 수행하지 않는다.
+- 사용자가 직접 제공한 `Samsung Galaxy Smartphone` 문자열만 확인된 콘텐츠로 취급한다. 역할·기간·기술·성과·공개 링크는 제공되지 않았으므로 추가하지 않는다.
+- Tetris 구현 규칙, 이미지 원본/출처/라이선스, 개인의 실제 외모나 신원 정보는 제공되지 않았다. 추측하지 않고 HITL로 분류한다.
+
+## 원자적 Change Items
+
+| ID | 원문 | 분류 | 현재/기대 동작 | 대상 파일 | 의존성 | 완료 기준 | Claude 검증 | 회귀 테스트 | 위험도 | HITL |
+|---|---|---|---|---|---|---|---|---|---|---|
+| CR-22 | Games 항목의 Snake 상단에 Tetris 게임 추가 | GAME, STRUCTURE | 현재 Games에는 Snake 게임만 있다. 기대 동작은 Snake 위에 Tetris 진입점 또는 게임 영역이 보이는 것이다. Tetris의 규칙·조작·점수·일시정지·게임오버·최고점·저장 정책은 미정이다. | `index.html`, `script.js`, `styles.css`, 향후 Tetris asset/파일 | 기존 Games IA CR-09, Tetris 정책 HITL | Snake를 가리지 않고 Tetris가 별도 영역으로 구분되며, 구현된 규칙과 안내가 일치한다. | Tetris 영역·내비게이션·상태 전이·console 검증 | 기존 Snake 시작/입력/점수/적/메뉴 회귀 | 높음 | Tetris 구현 범위·규칙·조작·모바일 UX·접근성 승인 필요 |
+| CR-23 | Projects의 `Project detilas:`에 `Samsung Galaxy Smartphone` 추가 | CONTENT | 현재 코드에는 `Project details: [사람 확인 필요]`가 있고 `Project detilas:`는 오탈자로 확인되지 않는다. 사용자가 제공한 정확한 프로젝트명만 추가할 수 있다. 역할·기간·기술·성과·공개 링크는 없다. | `index.html`, `CHANGE_REQUEST.md` | CR-02, 기존 공개 콘텐츠 HITL | 공개 문구가 `Samsung Galaxy Smartphone`을 정확히 포함하고, 확인되지 않은 경력 주장을 함께 만들지 않는다. 오탈자 교정 여부도 별도 결정한다. | Projects 텍스트와 공개 HTML의 정확한 문자열·오탈자 검토 | Projects anchor, 기존 `[사람 확인 필요]`, 내부 링크 회귀 | 중간 | 해당 명칭의 공개 유지 및 프로젝트명 표기 방식 승인 필요 |
+| CR-24 | Hero 제목 옆에 system software engineer 프로필 이미지 추가 | UI_UX, RESPONSIVE, ACCESSIBILITY | 현재 Hero에는 제목·소개 문구만 있고 이미지 요소, asset, alt text가 없다. 기대 동작은 큰 제목 옆에 Editorial Minimalism을 해치지 않는 심플한 이미지가 보이는 것이다. | `index.html`, `styles.css`, 새 image asset 후보 | CR-18 언어 정책, 이미지 출처/디자인 HITL | 375/768/1440px에서 제목과 이미지가 겹치지 않고, 이미지가 장식인지 정보성인지에 맞는 alt/숨김 정책이 적용된다. | 시각 배치·responsive overflow·alt/contrast 검토 | Hero 레이아웃, heading anchor, reduced-motion·모바일 회귀 | 중간 | 실제 사진/일러스트/AI 생성 이미지, 출처·라이선스, alt text, 사람을 묘사할지 결정 필요 |
+
+## 중복·충돌·모호성
+
+1. CR-22는 기존 CR-09의 “Games를 전문 포트폴리오와 분리할지 결정”과 의존한다. Tetris를 추가해도 Games의 IA 결정을 대신하지 않는다.
+2. CR-23은 사용자가 프로젝트명을 직접 제공했지만, 그 사실이 공개 가능한 경력이라는 의미까지 자동으로 보장하지 않는다. 공개 유지 여부는 기존 CR-02/CR-03/CR-07 계열 HITL을 따른다.
+3. `Project detilas:`는 현재 코드의 확인된 표기가 아니다. `details` 오탈자 교정과 프로젝트명 추가를 한 변경으로 묶지 않는다.
+4. CR-24의 “프로필 이미지”는 사용자의 실제 얼굴/신원을 의미한다고 가정하지 않는다. 이미지 정책이 승인되기 전에는 실제 인물 이미지나 개인정보를 만들지 않는다.
+5. Tetris는 게임 규칙이 없는 상태에서 기존 Snake 규칙을 재사용한다고 가정하지 않는다.
+
+## 권장 의존성 순서
+
+`CR-22 → CR-23 → CR-24`
+
+실행 전 기존 CR-09/CR-18/CR-02 계열 결정과 Tetris 규칙·이미지 정책 HITL을 완료한다. 승인되지 않은 항목은 `HITL_REQUIRED`로 중지한다.
+
+## 원문 보존
+
+> [Step 8 - 사용자 수정 요청 분석]
+>
+> [사용자 수정 요청]
+> 배포된 포트폴리오 사이트를 다음 기준으로 개선해줘.
+>
+> 1. Games 항목 에서 snake 상단에 tetris 게임을 추가한다.
+> 2. "Project detilas:"에 "Samsung Galaxy Smartphone"을 추가해줘.
+> 3. 큰 제목(Building useful systems with care) 옆에 system software engineer를 이미하는 심플한 프로필 이미지를 추가하면 좋겠다.
+>
+> 각 요청은 서로 독립적으로 검증할 수 있는 원자적인 Change Item으로 나눠줘. 확인되지 않은 경력, 프로젝트, 연구 내용, 개인정보 또는 게임 규칙을 추측해서 작성하지 마.
+>
+> 추가 자료 없음. 이번 단계에서는 구현하거나 테스트하지 않는다. 코드 수정, 테스트, commit, push, 배포는 금지한다.
+
+## Step 9 follow-up 실행 결과
+
+| ID | 상태 | 결과 |
+|---|---|---|
+| CR-22 | HITL_REQUIRED | Claude pre-test가 결과를 반환하지 않았고, 현재 문서·코드에는 Tetris 규칙·조작·점수·일시정지·게임오버·최고점·모바일·접근성 정책이 없다. 추측 구현하지 않음. |
+| CR-23 | BLOCKED_BY_CR-22 | 의존성 순서상 Tetris 결정 후 진행. 사용자 제공 문자열 외 역할·기간·기술·성과·링크는 추가하지 않음. |
+| CR-24 | BLOCKED_BY_CR-22 | 이미지 출처·라이선스·실제 인물 묘사·alt 정책이 미정이며, 의존성 순서상 진행하지 않음. |
+
+Step 9 follow-up에서는 코드 수정·테스트·commit·push·배포를 수행하지 않았다. `modify.txt`는 보존했다.
+
+## Step 9 follow-up 실행 결과 — 규칙 제공 후 재개
+
+| ID | 상태 | 결과 |
+|---|---|---|
+| CR-22 | PASSED (Codex fallback) | 제공된 Tetris 규칙으로 10×20 보드, 7종 블록, 줄 삭제·점수·레벨, next/ghost, 키보드 조작, pause/countdown, visibility 자동 일시정지, restart/high score, high contrast/sound-off UI를 구현했다. Claude pre-test는 결과 미반환이었다. |
+| CR-23 | PASSED (Codex fallback) | 사용자 제공 문자열 `Samsung Galaxy Smartphone`만 Projects에 추가했다. 역할·기간·기술·성과·링크는 추가하지 않았다. |
+| CR-24 | HITL_REQUIRED | 이미지 출처·라이선스·실제 인물 묘사·alt 정책이 미정이므로 구현하지 않았다. |
+
+Fallback 검증 결과: Node syntax, Tetris 정적 assertion, 로컬 HTML/CSS/JS HTTP `200` 통과. 변경 파일은 `index.html`, `script.js`, `styles.css`, `MEMORY.md`, `CHANGE_REQUEST.md`, `AORR_LOG.md`; `modify.txt`는 수정하지 않았다. Commit/push/deploy는 수행하지 않았다.
+
+## Step 9 follow-up 실행 결과 — 규칙 제공 후 재개
+
+| ID | 상태 | 결과 |
+|---|---|---|
+| CR-22 | PASSED (Codex fallback) | 제공된 Tetris 규칙으로 10×20 보드, 7종 블록, 줄 삭제·점수·레벨, next/ghost, 키보드 조작, pause/countdown, visibility 자동 일시정지, restart/high score, high contrast/sound-off UI를 구현했다. Claude pre-test는 결과 미반환이었다. |
+| CR-23 | PASSED (Codex fallback) | 사용자 제공 문자열 `Samsung Galaxy Smartphone`만 Projects에 추가했다. 역할·기간·기술·성과·링크는 추가하지 않았다. |
+| CR-24 | HITL_REQUIRED | 이미지 출처·라이선스·실제 인물 묘사·alt 정책이 미정이므로 구현하지 않았다. |
+
+Fallback 검증 결과: Node syntax, Tetris 정적 assertion, 로컬 HTML/CSS/JS HTTP `200` 통과. 변경 파일은 `index.html`, `script.js`, `styles.css`, `MEMORY.md`, `CHANGE_REQUEST.md`, `AORR_LOG.md`; `modify.txt`는 수정하지 않았다. Commit/push/deploy는 수행하지 않았다.
+
 ## Step 9 실행 결과
 
 | ID | 상태 | 구현/중지 사유 |
