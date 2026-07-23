@@ -136,6 +136,60 @@ Fallback 검증 결과: Node syntax, Tetris 정적 assertion, 로컬 HTML/CSS/JS
 
 배포 결과: 승인 후 commit `14c79d0`을 `main`에 push했고 `https://dg-ahn.github.io/`가 HTTP `200`을 반환했다. Tetris·`Samsung Galaxy Smartphone`·Snake marker와 배포 JS/CSS를 확인했다. Claude live regression은 네트워크 권한 차단으로 `HITL_REQUIRED`; CR-24 프로필 이미지는 미구현이다.
 
+---
+
+# Step 8 follow-up 2 — 추가 사용자 수정 요청 분석
+
+## 확인 범위와 제한
+
+- 기준: `MEMORY.md` Project Settings, 마지막 정상 배포 commit `428c2cf`, `https://dg-ahn.github.io/`, 현재 `index.html`, `styles.css`, `script.js`, 기존 Change Item 문서.
+- 이번 단계는 분석·문서화만 수행한다. 코드 수정, 테스트 실행, commit, push, 배포는 수행하지 않는다.
+- 현재 코드에서 확인된 사실만 기록한다: Tetris가 Snake보다 앞에 있고, Tetris cell/next preview에 piece type 문자가 들어가며, Snake 제목에 `지렁이`가 있고, Projects에 `[사람 확인 필요]`가 있다.
+
+## 원자적 Change Items
+
+| ID | 원문 | 분류 | 현재/기대 동작 | 대상 파일 | 의존성 | 완료 기준 | Claude 검증 | 회귀 테스트 | 위험도 | HITL |
+|---|---|---|---|---|---|---|---|---|---|---|
+| CR-25 | Tetris 블록 안 영어 알파벳 제거 | UI_UX, GAME, ACCESSIBILITY | 현재 `script.js`의 board/next preview draw가 piece type을 `textContent`로 표시한다. 기대 동작은 알파벳 없이 색상·모양·테두리로 구분하는 것이다. | `script.js`, `styles.css`, `index.html` | 없음 | 7종 블록 구분 방식은 유지하면서 보이는 I/O/T/S/Z/J/L 문자를 제거하고 키보드·next/ghost·고대비 기능은 유지한다. | board/next DOM 텍스트와 시각 구분·접근성 회귀 확인 | Tetris spawn/rotate/next/ghost/line clear, Snake DOM 회귀 | 중간 | 블록 문자를 screen reader에만 제공할지 `[사람 확인 필요]` |
+| CR-26 | Games 아래 Tetris와 Snake를 차례로 배치 | STRUCTURE, UI_UX | 현재 `index.html`에서 `tetris-section`이 Snake markup보다 앞에 있어 Tetris → Snake 순서다. 기대 순서는 동일하다. | `index.html`, `styles.css` | 없음 | DOM·시각 순서가 Tetris 다음 Snake이고 두 게임이 상태·입력·레이아웃을 침범하지 않는다. | DOM 순서·시각 순서·responsive stacking 확인 | Tetris/Snake 시작·키보드·메뉴·모바일 layout | 낮음 | 현재 구조 유지로 충족 가능한지 확인 |
+| CR-27 | `Snake / 지렁이`를 `Snake`로 표시 | CONTENT, UI_UX | 현재 Games 제목이 `Snake / 지렁이`다. 기대 동작은 제목을 `Snake`로만 표시하는 것이다. | `index.html` | 없음 | 제목·aria-labelledby·내부 anchor는 유지하고 보이는 한국어 보조 제목만 삭제한다. | visible heading과 accessible name 확인 | Snake 시작·상태·메뉴·Games 회귀 | 낮음 | 없음 — 요청 범위 명확 |
+| CR-28 | Selected work의 `[사람 확인 필요]` 삭제 | CONTENT | 현재 Projects 문구가 `Project details: Samsung Galaxy Smartphone. [사람 확인 필요]`다. 기대 동작은 placeholder만 삭제하고 프로젝트명은 유지하는 것이다. | `index.html` | 기존 CR-23 | 공개 Projects에 placeholder가 없고 역할·기간·기술·성과·링크는 추가하지 않는다. | 공개 HTML/Projects text와 미확인 필드 부재 확인 | Projects anchor, 프로젝트명, 내부 링크 | 중간 | 프로젝트명 공개 유지 여부는 기존 CR-23 HITL과 연결 |
+
+## 중복·충돌·모호성
+
+1. CR-26은 현재 DOM 순서가 이미 Tetris → Snake이므로 구조 변경이 필요 없을 수 있다. Claude가 시각 순서와 responsive stacking을 확인한다.
+2. CR-25는 알파벳을 화면에서 제거하는 요청이다. 블록 종류를 screen reader에 텍스트로 전달할지는 별도 접근성 결정이다.
+3. CR-28은 placeholder만 삭제하며 `Samsung Galaxy Smartphone` 외 프로젝트 사실을 추가하지 않는다.
+4. CR-27은 전체 언어 방향 결정인 CR-18과 별개로 제목 표시 문자열만 다룬다.
+
+## 권장 의존성 순서
+
+`CR-25 → CR-26 → CR-27 → CR-28`
+
+CR-25의 접근성 텍스트 정책과 CR-28의 프로젝트 공개 유지 여부가 승인되지 않으면 해당 항목은 `HITL_REQUIRED`로 중지한다.
+
+## 원문 보존
+
+> [Step 8 - 사용자 수정 요청 분석]
+>
+> 1. Tetris 게임에서 블록 안에 영어 알파벳은 제거해줘.
+> 2. Games 섹션아래에 Tetris와 Snake 게임을 차례로 배치해줘.
+> 3. `Snake / 지렁이` 제목에서 `Snake`로 표시해줘.
+> 4. `Selected work` 항목에서 `[사람 확인 필요]` 문구 삭제해줘.
+>
+> 추가 자료 없음. 이번 단계에서는 구현하거나 테스트하지 마. 코드 수정, 테스트, commit, push, 배포는 금지한다.
+
+## Step 9 follow-up 2 실행 결과
+
+| ID | 상태 | 결과 |
+|---|---|---|
+| CR-25 | PASSED (Codex fallback) | Tetris board와 next preview에서 piece type `textContent`를 제거했다. 색상·모양·테두리 구분, ghost·고대비·키보드 동작은 유지했다. |
+| CR-26 | PASSED (Codex fallback) | 현재 DOM의 Tetris → Snake 순서가 이미 요구와 일치해 구조 변경 없이 유지했다. |
+| CR-27 | PASSED (Codex fallback) | 제목을 `Snake`로 변경했다. |
+| CR-28 | PASSED (Codex fallback) | Projects의 `[사람 확인 필요]`만 삭제하고 `Samsung Galaxy Smartphone`은 유지했다. 추가 경력 세부정보는 작성하지 않았다. |
+
+Fallback 결과: Node syntax, CR-25~CR-28 정적 assertion, 로컬 HTML/CSS/JS HTTP `200` 통과. Claude pre-test 결과는 반환되지 않았다. 코드·문서 변경은 commit/push/배포 전 상태다.
+
 ## Step 9 follow-up 실행 결과 — 규칙 제공 후 재개
 
 | ID | 상태 | 결과 |

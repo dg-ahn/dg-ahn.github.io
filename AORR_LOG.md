@@ -69,3 +69,10 @@
 - Pages regression: after propagation, URL `https://dg-ahn.github.io/?v=14c79d0` returned HTTP `200`; HTML contained Tetris, `Samsung Galaxy Smartphone`, and Snake markers; deployed JS/CSS returned `200` and contained Tetris high-score/visibility logic and styles.
 - Claude deployment regression: `dontAsk` reported all network/shell fetch tools denied. Fingerprint: `CLAUDE_DEPLOYMENT_FETCH_PERMISSION_DENIED`. Codex fallback passed equivalent deployed checks.
 - Final status: `HITL_REQUIRED` because CR-24 image policy and Claude live regression remain unresolved; Tetris/project-label deployment is live.
+- Step 9 follow-up 2: Claude pre-test for CR-25~CR-28 returned no result body (`CLAUDE_REPOSITORY_VERIFIER_NO_OUTPUT`); Codex fallback performed the approved minimal changes and verification.
+- CR-25: removed visible Tetris piece letters from board and next preview while preserving piece classes, borders, colors, ghost, and high-contrast behavior.
+- CR-26: verified existing DOM order is Tetris before Snake; no structural change was needed.
+- CR-27: changed `Snake / 지렁이` to `Snake`.
+- CR-28: removed only the Projects `[사람 확인 필요]` placeholder and preserved `Samsung Galaxy Smartphone`; no unverified project fields were added.
+- Fallback verification: Node syntax passed; static assertions passed; local root/CSS/JS HTTP statuses were all `200`. Test-runner invocation errors were not implementation failures and did not weaken assertions.
+- Step 9 follow-up 2 status: `DEPLOY_APPROVAL_REQUIRED`; no commit, push, or deployment. Rollback basis remains `428c2cf`; preserve `modify.txt`.
