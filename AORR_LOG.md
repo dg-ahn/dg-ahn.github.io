@@ -81,3 +81,5 @@
 - Pages status: repeated cache-busting and direct `index.html` requests returned HTTP `200` but stale HTML still contained `Snake / 지렁이` and `[사람 확인 필요]`, and did not contain the new `Snake` heading/project text. Fingerprint: `GITHUB_PAGES_STALE_HTML_AFTER_PUSH`.
 - Claude deployment regression: network/shell fetch tools were denied and Bash also hit `.claude/session-env` EPERM. Fingerprint: `CLAUDE_DEPLOYMENT_FETCH_PERMISSION_DENIED`.
 - Final status: `HITL_REQUIRED`; code is pushed but live Pages content is not verified as updated. No force push or reset performed.
+- User reported Tetris blocks still showing English letters. Browser inspection confirmed the open live page is stale pre-Tetris HTML; local latest code already cleared cell text. Added numeric piece-class mapping (`piece-0`…`piece-6`) in `script.js` plus matching CSS, so English type letters are no longer used in rendered cell classes.
+- Local fallback verification: bundled Node syntax check and static assertions for empty cell text assignments/numeric piece mapping passed. Status: `DEPLOY_APPROVAL_REQUIRED`; files are uncommitted and not deployed pending approval.

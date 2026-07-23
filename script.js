@@ -41,6 +41,7 @@
   const board = document.querySelector('#tetris-board');
   if (!board) return;
   const width = 10, height = 20, types = ['I','O','T','S','Z','J','L'];
+  const pieceClass = {I:'0',O:'1',T:'2',S:'3',Z:'4',J:'5',L:'6'};
   const shapes = {
     I:[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]], O:[[0,1,1,0],[0,1,1,0],[0,0,0,0],[0,0,0,0]],
     T:[[0,1,0,0],[1,1,1,0],[0,0,0,0],[0,0,0,0]], S:[[0,1,1,0],[1,1,0,0],[0,0,0,0],[0,0,0,0]],
@@ -56,8 +57,8 @@
   const matrix = piece => { let result=shapes[piece.type]; for(let i=0;i<piece.rotation;i+=1) result=rotate(result); return result; };
   const eachBlock = (piece, fn) => matrix(piece).forEach((row,y)=>row.forEach((filled,x)=>{if(filled)fn(piece.x+x,piece.y+y);}));
   const collides = piece => { let hit=false; eachBlock(piece,(x,y)=>{if(x<0||x>=width||y>=height||(y>=0&&grid[y][x]))hit=true;}); return hit; };
-  const drawNext = () => { nextCells.forEach(cell=>{cell.className='tetris-cell';cell.textContent='';}); const preview={type:next,rotation:0,x:0,y:0}; eachBlock(preview,(x,y)=>{if(x<4&&y<4){nextCells[y*4+x].classList.add('piece-'+next);}}); };
-  const draw = () => { cells.forEach(cell=>{cell.className='tetris-cell';cell.textContent='';}); grid.forEach((row,y)=>row.forEach((piece,x)=>{if(piece){cells[y*width+x].classList.add('piece-'+piece);}})); if(current){const ghost={...current};while(!collides({...ghost,y:ghost.y+1}))ghost.y+=1;eachBlock(ghost,(x,y)=>{if(y>=0&&!grid[y][x]&&!cells[y*width+x].classList.contains('ghost'))cells[y*width+x].classList.add('ghost');});eachBlock(current,(x,y)=>{if(y>=0){cells[y*width+x].className='tetris-cell piece-'+current.type;}});} scoreEl.textContent=score;linesEl.textContent=lines;levelEl.textContent=Math.floor(lines/10)+1;drawNext(); };
+  const drawNext = () => { nextCells.forEach(cell=>{cell.className='tetris-cell';cell.textContent='';}); const preview={type:next,rotation:0,x:0,y:0}; eachBlock(preview,(x,y)=>{if(x<4&&y<4){nextCells[y*4+x].classList.add('piece-'+pieceClass[next]);}}); };
+  const draw = () => { cells.forEach(cell=>{cell.className='tetris-cell';cell.textContent='';}); grid.forEach((row,y)=>row.forEach((piece,x)=>{if(piece){cells[y*width+x].classList.add('piece-'+pieceClass[piece]);}})); if(current){const ghost={...current};while(!collides({...ghost,y:ghost.y+1}))ghost.y+=1;eachBlock(ghost,(x,y)=>{if(y>=0&&!grid[y][x]&&!cells[y*width+x].classList.contains('ghost'))cells[y*width+x].classList.add('ghost');});eachBlock(current,(x,y)=>{if(y>=0){cells[y*width+x].className='tetris-cell piece-'+pieceClass[current.type];}});} scoreEl.textContent=score;linesEl.textContent=lines;levelEl.textContent=Math.floor(lines/10)+1;drawNext(); };
   const stopDrop = () => { if(dropTimer!==null){clearInterval(dropTimer);dropTimer=null;} };
   const startDrop = () => { stopDrop(); if(running&&!paused)dropTimer=setInterval(()=>step(),Math.max(100,800-(Math.floor(lines/10)*70))); };
   const setStatus = text => { statusEl.textContent=text; };
